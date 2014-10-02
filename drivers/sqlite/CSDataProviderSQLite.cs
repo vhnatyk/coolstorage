@@ -32,18 +32,23 @@ using System.Data;
 
 namespace Vici.CoolStorage
 {
-    public class CSDataProviderSQLite : CSDataProvider
+    public class CSDataProviderSqlite : CSDataProvider
     {
-        public CSDataProviderSQLite(string connectionString)
+        public CSDataProviderSqlite(string connectionString)
             : base(connectionString)
         {
         }
 
-        public CSDataProviderSQLite(string fileName, bool useDateTimeTicks)
+        public CSDataProviderSqlite(string fileName, bool useDateTimeTicks)
             : base("Data Source=" + fileName + ";DateTimeFormat=" + (useDateTimeTicks ? "Ticks":"ISO8601"))
         {
         }
 
+        protected override object NullFieldValue()
+        {
+            return DBNull.Value;
+        }
+		
         protected override ICSDbConnection CreateConnection()
         {
             SQLiteConnection conn = new SQLiteConnection(ConnectionString);
@@ -60,7 +65,7 @@ namespace Vici.CoolStorage
 
         protected override CSDataProvider Clone()
         {
-            return new CSDataProviderSQLite(ConnectionString);
+            return new CSDataProviderSqlite(ConnectionString);
         }
 
         protected override ICSDbCommand CreateCommand(string sqlQuery, CSParameterCollection parameters)
@@ -177,7 +182,7 @@ namespace Vici.CoolStorage
 
                 dbCommand.CommandText = "select * from " + QuoteTable(tableName);
 
-                using (CSSqliteReader dataReader = (CSSqliteReader)dbCommand.ExecuteReader(CommandBehavior.SchemaOnly | CommandBehavior.KeyInfo))
+                using (CSSqliteReader dataReader = (CSSqliteReader)dbCommand.ExecuteReader(CSCommandBehavior.SchemaOnly | CSCommandBehavior.KeyInfo))
                 {
                     List<CSSchemaColumn> columns = new List<CSSchemaColumn>();
 
@@ -259,9 +264,9 @@ namespace Vici.CoolStorage
                 return Connection.State == ConnectionState.Closed;
             }
 
-            public ICSDbTransaction BeginTransaction(IsolationLevel isolationLevel)
+            public ICSDbTransaction BeginTransaction(CSIsolationLevel isolationLevel)
             {
-                return new CSSqliteTransaction(Connection.BeginTransaction(isolationLevel));
+                return new CSSqliteTransaction(Connection.BeginTransaction((IsolationLevel)isolationLevel));
             }
 
             public ICSDbTransaction BeginTransaction()
@@ -301,9 +306,9 @@ namespace Vici.CoolStorage
                 set { Command.CommandTimeout = value; }
             }
 
-            public ICSDbReader ExecuteReader(CommandBehavior commandBehavior)
+            public ICSDbReader ExecuteReader(CSCommandBehavior commandBehavior)
             {
-                return new CSSqliteReader(Command.ExecuteReader(commandBehavior));
+                return new CSSqliteReader(Command.ExecuteReader((CommandBehavior)commandBehavior));
             }
 
             public ICSDbReader ExecuteReader()
