@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{804445EB-57E1-4F64-8830-61A8701F1C25};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{6B1EFBFE-9255-46B0-9E9E-4CA4663B241E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Vici.CoolStorage.Sqlite.Mac.Monobjc_r</RootNamespace>
+    <MacOSApplicationType>CocoaLibrary</MacOSApplicationType>
+    <MacOSApplicationCategory>
+    </MacOSApplicationCategory>
+    <BundleId>net.monobjc.application.Test</BundleId>
+    <BundleVersion>1.0</BundleVersion>
+    <MacOSVersion>MacOS106</MacOSVersion>
+    <Signing>false</Signing>
+    <SigningIdentity>
+    </SigningIdentity>
+    <UseEntitlements>false</UseEntitlements>
+    <AdditionalLibraries>
+    </AdditionalLibraries>
+    <CombineArtwork>false</CombineArtwork>
+    <EncryptionSeed>
+    </EncryptionSeed>
+    <Archive>false</Archive>
+    <ArchiveIdentity>
+    </ArchiveIdentity>
+    <MacOSArch>X86</MacOSArch>
+    <EmbeddedFrameworks>
+    </EmbeddedFrameworks>
+    <AdditionalAssemblies>
+    </AdditionalAssemblies>
+    <ExcludedAssemblies>
+    </ExcludedAssemblies>
+    <MacOSFrameworks>Foundation;AppKit</MacOSFrameworks>
+    <AssemblyName>Vici.CoolStorage.Sqlite.Mac.Monobjc_r</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;MACOSX;MONOBJC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <DefineConstants>MACOSX;MONOBJC</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Monobjc, Version=0.0.0.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be">
+      <Package>monobjc-10.9</Package>
+    </Reference>
+    <Reference Include="Monobjc.AppKit, Version=10.9.0.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be">
+      <Package>monobjc-10.9</Package>
+    </Reference>
+    <Reference Include="Monobjc.Foundation, Version=10.9.0.0, Culture=neutral, PublicKeyToken=d5a8d181860c16be">
+      <Package>monobjc-10.9</Package>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildBinPath)\Monobjc.CocoaLibrary.targets" />
+  <ItemGroup>
+    <Compile Include="..\xamarin-ios-sqlite\Library\CS.cs">
+      <Link>CS.cs</Link>
+    </Compile>
+    <Compile Include="..\xamarin-ios-sqlite\Library\CSDataProviderSQLite.cs">
+      <Link>CSDataProviderSQLite.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\library\Vici.CoolStorage.PCL.csproj">
+      <Project>{2DD3D8D0-7CEC-4915-B279-5DED87FA5169}</Project>
+      <Name>Vici.CoolStorage.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\Library\Vici.Core.PCL.csproj">
+      <Project>{F3DF58D7-69AD-49F6-838F-6BDF02D3886A}</Project>
+      <Name>Vici.Core.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
