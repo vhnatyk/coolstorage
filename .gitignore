@@ -8,4 +8,4 @@ Obj
 *.resharper*
 *.pidb
 *.userprefs
-
+Resource.Designer.cs
